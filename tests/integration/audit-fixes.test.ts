@@ -42,7 +42,7 @@ vi.mock('../../src/config.js', () => ({
     corsOrigins: '*',
     baseUrl: 'http://localhost:3000',
     trustProxy: false,
-    defaultModel: 'claude-opus-4-7',
+    defaultModel: 'claude-opus-4-8',
     routerModel: 'claude-sonnet-4-5',
     logLevel: 'error',
     version: '0.14.3',
@@ -353,7 +353,7 @@ describe('C2/H6/H8 — /revise hardening', () => {
     mockChat.mockResolvedValue({
       text: '# Revised Memo\n\n' + 'Better prose. '.repeat(40),
       cost: 0.45,
-      model: 'claude-opus-4-7',
+      model: 'claude-opus-4-8',
       provider: 'anthropic',
     });
 
@@ -383,7 +383,7 @@ describe('C2/H6/H8 — /revise hardening', () => {
       resolveFirst = () => resolve({
         text: '# Revised\n\n' + 'OK. '.repeat(80),
         cost: 0.40,
-        model: 'claude-opus-4-7',
+        model: 'claude-opus-4-8',
         provider: 'anthropic',
       });
     }));

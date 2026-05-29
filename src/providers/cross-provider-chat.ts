@@ -56,7 +56,7 @@ function modelFor(tier: 'opus' | 'sonnet' | 'haiku'): string {
     default:
       // Anthropic-tier mapping. Sonnet 4.5 covers sonnet+haiku in this build.
       switch (tier) {
-        case 'opus':   return 'claude-opus-4-7';
+        case 'opus':   return 'claude-opus-4-8';
         case 'sonnet': return 'claude-sonnet-4-5';
         case 'haiku':  return 'claude-sonnet-4-5'; // upgraded in v0.14.3
       }
@@ -197,20 +197,20 @@ export async function crossProviderChat(
   }
 
   // ── ANTHROPIC / MANAGED ──
-  // NOTE: Anthropic deprecated `temperature` for Opus 4.7 (April 2026 — the
+  // NOTE: Anthropic deprecated `temperature` for recent Opus 4.x models (the
   // API now returns `invalid_request_error: 'temperature' is deprecated for
-  // this model`). Opus 4.7 always runs at the model's default sampling.
+  // this model`). Opus 4.8 always runs at the model's default sampling.
   // Sonnet 4.5 still accepts temperature, so we conditionally include it.
   ensureApiKey();
   const client = new Anthropic();
-  const isOpus47 = /opus-4-7/.test(model);
+  const isTemperatureUnsupportedOpus = /opus-4-[78]/.test(model);
   const requestBody: Anthropic.MessageCreateParamsNonStreaming = {
     model,
     max_tokens: opts.maxTokens,
     system: opts.system,
     messages: turnList,
   };
-  if (!isOpus47) {
+  if (!isTemperatureUnsupportedOpus) {
     requestBody.temperature = temperature;
   }
   // Audit fix H7: wrap the Anthropic call in withRetry so transient

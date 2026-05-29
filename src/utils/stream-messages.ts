@@ -18,10 +18,10 @@ import { createLogger } from './logger.js';
 const logger = createLogger('STREAM');
 
 // ── Token Pricing (per million tokens) ────────────────────────────────
-// Source: Anthropic pricing as of 2025. Updated here if prices change.
+// Source: Anthropic pricing as of May 2026. Updated here if prices change.
 export const PRICING: Record<string, { input: number; output: number; cacheRead: number; cacheWrite: number }> = {
-  // Anthropic / Claude — current (4.7 generation)
-  'claude-opus-4-7':            { input: 15.0, output: 75.0, cacheRead: 1.5,  cacheWrite: 18.75 },
+  // Anthropic / Claude — current generation
+  'claude-opus-4-8':            { input: 5.0,  output: 25.0, cacheRead: 0.5,  cacheWrite: 6.25 },
   'claude-sonnet-4-5':          { input: 3.0,  output: 15.0, cacheRead: 0.3,  cacheWrite: 3.75 },
   'claude-haiku-4-5':            { input: 1.0,  output: 5.0,  cacheRead: 0.1,  cacheWrite: 1.25 },
   // Legacy keys (kept for in-flight sessions + archived cost records)
