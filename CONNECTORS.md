@@ -8,7 +8,7 @@ Lavern abstracts the underlying model behind a provider interface in `src/provid
 
 | Provider | Used by default? | Required env | When to use |
 |---|---|---|---|
-| **Anthropic Claude** | yes | `ANTHROPIC_API_KEY` | Default. Opus 4.7 for primary orchestration, Sonnet 4.5 for lighter passes. |
+| **Anthropic Claude** | yes | `ANTHROPIC_API_KEY` | Default. Opus 4.8 for primary orchestration, Sonnet 4.5 for lighter passes. |
 | **Mistral AI** (EU sovereign) | no | `MISTRAL_API_KEY` + `LAVERN_PROVIDER=mistral` | European in-house teams under Schrems II pressure. Data stays in EU. Per-session opt-in. |
 | **Ollama** (on-device) | only in Clawern | (local) | Clawern confidential-mode triage. Runs entirely on-device. Zero LLM cost. |
 

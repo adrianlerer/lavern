@@ -10,7 +10,7 @@ import { PRICING } from '../../src/utils/stream-messages.js';
 
 describe('PRICING table', () => {
   it('has entries for all current Claude models', () => {
-    expect(PRICING['claude-opus-4-7']).toBeDefined();
+    expect(PRICING['claude-opus-4-8']).toBeDefined();
     expect(PRICING['claude-sonnet-4-5']).toBeDefined();
     expect(PRICING['claude-haiku-4-5']).toBeDefined();
   });
@@ -37,7 +37,7 @@ describe('PRICING table', () => {
   });
 
   it('Opus is more expensive than Sonnet', () => {
-    const opus = PRICING['claude-opus-4-7'];
+    const opus = PRICING['claude-opus-4-8'];
     const sonnet = PRICING['claude-sonnet-4-5'];
     expect(opus.input).toBeGreaterThan(sonnet.input);
     expect(opus.output).toBeGreaterThan(sonnet.output);
@@ -58,8 +58,8 @@ describe('PRICING table', () => {
   });
 
   it('all prices are per million tokens', () => {
-    // Sanity check: Opus output should be $75/M tokens
-    expect(PRICING['claude-opus-4-7'].output).toBe(75.0);
+    // Sanity check: Opus 4.8 output should be $25/M tokens
+    expect(PRICING['claude-opus-4-8'].output).toBe(25.0);
     // Sonnet input should be $3/M tokens
     expect(PRICING['claude-sonnet-4-5'].input).toBe(3.0);
   });

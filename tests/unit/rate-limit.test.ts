@@ -28,7 +28,7 @@ vi.mock('../../src/config.js', () => ({
     corsOrigins: '*',
     baseUrl: 'http://localhost:3000',
     trustProxy: false,
-    defaultModel: 'claude-opus-4-7',
+    defaultModel: 'claude-opus-4-8',
     routerModel: 'claude-sonnet-4-5',
     logLevel: 'info',
     version: '0.10.0',

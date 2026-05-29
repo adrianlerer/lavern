@@ -76,7 +76,7 @@ describe('POST /api/challenge — Anthropic call shape', () => {
     });
   }
 
-  it('does NOT include an assistant prefill message (regression: HTTP 400 on Opus 4.7+)', async () => {
+  it('does NOT include an assistant prefill message (regression: HTTP 400 on Opus 4.8+)', async () => {
     const resp = await fireChallenge();
     expect(resp.statusCode).toBe(200);
 

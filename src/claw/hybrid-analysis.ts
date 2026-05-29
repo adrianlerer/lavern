@@ -160,7 +160,7 @@ export async function analyzeHybrid(
   let frontierUsd = 0;
 
   try {
-    log(`[hybrid] Sending ${escalated.length} anonymised clauses to Opus 4.7 for deep review (budget cap: $${(clawConfig.perDocBudget * 0.3).toFixed(2)}).`);
+    log(`[hybrid] Sending ${escalated.length} anonymised clauses to Opus 4.8 for deep review (budget cap: $${(clawConfig.perDocBudget * 0.3).toFixed(2)}).`);
     ensureApiKey();
     const client = new Anthropic();
 
@@ -195,7 +195,7 @@ ANONYMISED CLAUSES FOR DEEP REVIEW (one per '---'):
 ${anonymized.anonymizedText}`;
 
     const response = await client.messages.create({
-      model: 'claude-opus-4-7',
+      model: 'claude-opus-4-8',
       max_tokens: 16_000,
       system,
       messages: [{ role: 'user', content: userMessage }],
@@ -206,10 +206,10 @@ ${anonymized.anonymizedText}`;
       if (block.type === 'text') raw += block.text;
     }
 
-    // Cost — Opus 4.7: $15/M input, $75/M output
+    // Cost — Opus 4.8: $5/M input, $25/M output
     const inputT = response.usage?.input_tokens ?? 0;
     const outputT = response.usage?.output_tokens ?? 0;
-    frontierUsd = (inputT * 15 / 1_000_000) + (outputT * 75 / 1_000_000);
+    frontierUsd = (inputT * 5 / 1_000_000) + (outputT * 25 / 1_000_000);
 
     // Parse the findings — accept JSON object or fenced JSON
     const tryParse = (s: string): unknown => {
